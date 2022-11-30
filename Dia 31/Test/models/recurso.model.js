@@ -4,7 +4,7 @@ const Joi = require('joi');
 const validateRequest = require('../middleware/validateRequest')
 
 const RecursoSchema = new Schema({
-    idRecurso:{ //No debería hacer falta ya que el mongo agrega un ID por defecto a cada nuevo elemento agregado a la base
+    idRecurso:{ //No debería hacer falta ya que el mongo agrega un ID por defecto a cada nuevo elemento agregado a la base //Punto 2
         required: true,
         unique: true,
         type: Number

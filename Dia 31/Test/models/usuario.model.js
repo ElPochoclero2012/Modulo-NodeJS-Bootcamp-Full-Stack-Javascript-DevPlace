@@ -12,9 +12,9 @@ const UsuarioSchema = new Schema({
         required: true,
         type: String
     },
-    rol:{ // La idea es que, de ser 0 sería un usuario comun, y de ser 1 sería un usuario premium
+    rol:{ // La idea es que, de ser 0 sería un usuario comun, y de ser 1 sería un usuario premium //Punto 1
         required: true,
-        type: Boolean
+        type: Boolean  //Punto 1
     }
 })
 
