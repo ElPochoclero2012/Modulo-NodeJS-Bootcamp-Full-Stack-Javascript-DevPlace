@@ -6,6 +6,7 @@ import NavBarDown from './components/NavBarDown';
 import Homepage from './components/Homepage';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
+import AddProduct from './components/pages/AddProduct';
 import Physical from './components/pages/Physical';
 import Digital from './components/pages/Digital';
 import Search from './components/pages/Search';
@@ -60,6 +61,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/AddProduct" element={<AddProduct />} />
           <Route path="/Physical" element={<Physical />} />
           <Route path="/Digital" element={<Digital />} /> 
           <Route path="/Cart" element={<Cart />} />
