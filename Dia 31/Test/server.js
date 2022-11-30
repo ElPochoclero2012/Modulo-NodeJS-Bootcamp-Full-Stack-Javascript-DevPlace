@@ -9,7 +9,7 @@ const usuarioRouter = require('./routes/usuario.route');
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/Dia31Test")
+mongoose.connect("mongodb://localhost:27017/Dia31Test") // Punto 3 y 4 (No tengo forma de mostrar que hice la base de datos desde el código)
     .then( () => console.log("Conectado a mongoDB..."))
     .catch((err) => console.log(err));
 
@@ -22,3 +22,5 @@ server.use(usuarioRouter);
 server.listen(port, () => {
     console.log(`Servidor corriendo en ${port}`);
 });
+
+// Punto 8 realizado
