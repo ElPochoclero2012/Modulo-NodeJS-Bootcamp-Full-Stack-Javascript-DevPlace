@@ -9,7 +9,7 @@ const usuarioRouter = require('./routes/usuario.route');
 
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/store")
+mongoose.connect("mongodb://localhost:27017/Dia31Test")
     .then( () => console.log("Conectado a mongoDB..."))
     .catch((err) => console.log(err));
 

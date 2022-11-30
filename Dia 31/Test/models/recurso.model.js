@@ -15,7 +15,7 @@ const RecursoSchema = new Schema({
     }
 })
 
-const Recurso = mongoose.model('recursos', RecursoSchema);
+const Recurso = mongoose.model('recurso', RecursoSchema);
 
 const Validate = (req, res, next) => {
     const schema = Joi.object({

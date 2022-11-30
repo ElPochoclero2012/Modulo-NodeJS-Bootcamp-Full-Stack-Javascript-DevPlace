@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Joi = require('joi');
-const { string, boolean } = require('joi');
 const validateRequest = require('../middleware/validateRequest')
 
 const UsuarioSchema = new Schema({
@@ -19,7 +18,7 @@ const UsuarioSchema = new Schema({
     }
 })
 
-const Usuario = mongoose.model('users', UsuarioSchema);
+const Usuario = mongoose.model('usuario', UsuarioSchema);
 
 const Validate = (req, res, next) => {
     const schema = Joi.object({
