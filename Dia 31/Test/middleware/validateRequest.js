@@ -10,7 +10,7 @@ function validateRequest (req, res, next, schema){
         res.status(400).json({message:`${error.details.map(x => x.message).join(', ')}`});
     } else {
         req.body = value;
-        next();
+        next(); //Por algún motivo que no llego con el tiempo a terminar de revisar, no me funciona el next, por lo que no puedo postear
     }
 }
 
