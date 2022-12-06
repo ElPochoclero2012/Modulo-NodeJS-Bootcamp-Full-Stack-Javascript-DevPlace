@@ -327,6 +327,21 @@ ul {
     margin-bottom: 2rem;
 }
 
+.AddProductForm{
+    border: 10px solid rgb(255, 255, 255);
+    box-shadow: 5px 5px 30px rgb(224, 223, 223);
+    margin: 1rem 1rem 2rem 1rem;
+    border-radius: 1rem;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 1vw;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    margin-bottom: 2rem;
+}
+
 .CheckoutForm{
     border: 10px solid rgb(255, 255, 255);
     box-shadow: 5px 5px 30px rgb(224, 223, 223);

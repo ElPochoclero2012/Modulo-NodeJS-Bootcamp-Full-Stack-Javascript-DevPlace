@@ -1,145 +1,77 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
+import Button from "react-bootstrap/Button";
+import Form from 'react-bootstrap/Form';
 
-const initialState = {
-  imagen: "",
-  nombre: "",
-  descripcion: "",
-  precio: "",
-};
-
-
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "CH_NOMBRE": {
-      return {
-        ...state,
-        nombre: action.value,
-      };
-    }
-    case "CH_DESCRIPCION": {
-      return {
-        ...state,
-        descripcion: action.value,
-      };
-    }
-    case "CH_PRECIO": {
-      return {
-        ...state,
-        precio: action.value,
-      };
-    }
-    case "CH_IMAGEN": {
-      return {
-        ...state,
-        imagen: action.value,
-      };
-    }
-  }
-  return state;
-};
 
 function AddProduct() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(state);
-    const url = "http://localhost:5050/v0/mysql/product";
-    const formData = new FormData();
-    formData.append("image",file);
-    const config = {
-      Headers:{
-       'content-type': 'multipart/form-data', 
-      }
-    };
-    axios.post(url, formData, config).then((res) => {
-      console.log(res);
+
+    const [data, setData] = useState({
+      name:'',
+      image:'',
+      price:0,
+      category:1
     })
-    .catch((error) => {
-      console.log(error);
-    })
-  };
-  const [file, setFile] = useState(); 
 
-  function handleFileChange(event){
-    setFile(event.target.files[0]);
-  }
+    const handleChange = (e) => {
+      setData({
+        ...data,
+        [e.target.name]: e.target.value
+      })
+    }
 
-  return (
-    <div className="containerCards">
-      <div className="Cards">
-        <form
-          name="form"
-          method="post"
-          action="/send.php"
-          enctype="multipart/form-data"
-          onSubmit={handleSubmit}
-        >
-          <label htmlFor="">Seleccione imagen del producto </label>
-          <input
-            type="file"
-            name="adjunto"
-            accept=".jpg,.png"
-            onChange={handleFileChange}
-          />
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      fetch('http://localhost:5050/product',{
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(data)
+      }).then((res) => 
+        res.json() 
+      ).then(data => console.log(data))
+      .catch((err) => console.log(err))
 
-          <div className="card">
-            <label htmlFor="">Ingrese nombre del producto</label>
-            <input
-              type="text"
-              name="producto"
-              value={state.nombre}
-              onChange={(event) =>
-                dispatch({ type: "CH_NOMBRE", value: event.target.value })
-              }
-            />
-            <label htmlFor="">Ingrese descripcion del producto</label>
-            <input
-              type="text"
-              name="descripcion"
-              value={state.descripcion}
-              onChange={(event) =>
-                dispatch({ type: "CH_DESCRIPCION", value: event.target.value })
-              }
-            />
-            <label>Ingrese Precio del producto</label>
-            <input
-              type="number"
-              name="precio"
-              value={state.precio}
-              onChange={(event) =>
-                dispatch({ type: "CH_PRECIO", value: event.target.value })
-              }
-            />
-            <button type="submit">Mandar</button>
-          </div>
-        </form>
-      </div>
+    }
 
-      <div>
-        <CardGroup className="Cards">
-          <Card.Body>
-            <Card.Img
-              className="imagen-card"
-              src="https://t3.ftcdn.net/jpg/02/15/15/46/360_F_215154625_hJg9QkfWH9Cu6LCTUc8TiuV6jQSI0C5X.jpg"
-            />
-            <Card.Title>{state.nombre}</Card.Title>
-            <Card.Text>{state.descripcion}</Card.Text>
-            <small className="text-muted">${state.precio}</small>
-            <Card.Footer>
-              <button type="button" className="submit">
-                Vender
-              </button>
-            </Card.Footer>
-          </Card.Body>
-        </CardGroup>
-      </div>
-    </div>
-  );
+  return(
+    <>
+    <Form className="AddProductForm" onSubmit={handleSubmit}>
+
+    <p className="Title">Want to add a PRODUCT? </p><p className="Title">Complete this!</p>
+
+        <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" name="name" onChange={handleChange} placeholder="Enter a name" required/>
+        </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPrice">
+        <Form.Label>Price</Form.Label>
+        <Form.Control type="number" name="price" onChange={handleChange} placeholder="Enter price" required/>
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicCategory">
+        <Form.Label>Category</Form.Label>
+        <Form.Select name="category" id="category" onChange={handleChange}>
+          <option>...</option>
+          <option value={1}>Digital</option>
+          <option value={2}>Physical</option>
+        </Form.Select>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Add a image</Form.Label>
+        <Form.Control type="file" name="image" onChange={handleChange} placeholder="Add a image"></Form.Control> <br/>
+      </Form.Group>
+
+
+      
+      <Button variant="success" type="submit" className="SubmitButton">
+        Submit!
+      </Button>
+
+    </Form>
+    </>
+  )
 }
 
-
-export default AddProduct
+export default AddProduct;

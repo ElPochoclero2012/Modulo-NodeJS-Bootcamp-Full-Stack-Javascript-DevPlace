@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useCart } from 'react-use-cart';
 // import Button from 'react-bootstrap/Button';
 // import ButtonItems from './ButtonItems';
@@ -19,11 +19,6 @@ const Product = (props) => {
                         <h4><b>{props.element.name}</b></h4>
                             <p>${props.element.price}</p>
                             <button className="btn btn-success" onClick={() => addItem(props.element)}>Add to Cart</button>
-                        {/* <div className="container"> */}
-                            {/* <h4><b>{props.element.name}</b></h4>
-                            <p>{props.element.price}</p>
-                            <Button variant="success" id="buyButton">Add to cart</Button> */}
-                        {/* </div> */}
                     </div>
 
             
