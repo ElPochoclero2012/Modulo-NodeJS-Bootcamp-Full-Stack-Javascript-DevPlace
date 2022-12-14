@@ -14,7 +14,6 @@ var Products = sequelize.define('product',{
     price: Sequelize.INTEGER,
     category: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
             model: 'categories',
             key: 'id'
@@ -27,7 +26,6 @@ var Products = sequelize.define('product',{
                 Products.belongsTo(models.category, {
                     foreignKey: {
                         fieldName: 'category',
-                        allowNull: true,
                         require: true
                     },
                     targetKey: 'id'

@@ -16,6 +16,7 @@ server.use(express.urlencoded({extended: false}));
 server.use('/product', productRouter);
 server.use('/user', userRouter);
 server.use('/category', categoryRouter);
+server.use('/upload', express.static('upload'));
 
 server.listen(port,() => {
     console.log(`BD conectada... Puerto ${port}`);

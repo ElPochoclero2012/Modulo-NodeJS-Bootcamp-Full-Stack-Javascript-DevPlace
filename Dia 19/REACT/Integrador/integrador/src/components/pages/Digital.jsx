@@ -1,8 +1,23 @@
-import React from 'react'
-import arrayProducts from "../data/ProductList";
+import React, { useEffect, useState } from "react";
 import Product from '../Product';
 
 function Digital() {
+
+  const [arrayProducts, setarrayProducts] = useState([])
+
+  useEffect(() => {
+
+
+    
+    fetch('http://localhost:5050/product')
+          .then(res => res.json())
+          .then(data => data.data)
+          .then((resp) => {
+            setarrayProducts(resp)
+          })
+ 
+  }, [])
+
   return (
     <>
     <h1 className="Title">Digital games</h1>    
@@ -11,7 +26,7 @@ function Digital() {
 
     {arrayProducts.map((e, key)=>
       {
-        if(e.type == "Digital")
+        if(e.category == "1")
         {
           return(
             <Product element={e} key={key}/>

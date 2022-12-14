@@ -21,6 +21,7 @@ const fileFilter = (req, file, cb) => {
         cb('Error: Images Only!');
     }
 }
+
 const uploadMulter = multer({
     storage: multerStorage,
     fileFilter: fileFilter

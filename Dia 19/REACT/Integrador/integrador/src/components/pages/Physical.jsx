@@ -1,8 +1,22 @@
-import React from 'react'
-import arrayProducts from "../data/ProductList";
+import React, { useEffect, useState } from 'react'
 import Product from '../Product';
 
 function Physical() {
+
+  const [arrayProducts, setarrayProducts] = useState([])
+
+  useEffect(() => {
+
+
+    
+    fetch('http://localhost:5050/product')
+          .then(res => res.json())
+          .then(data => data.data)
+          .then((resp) => {
+            setarrayProducts(resp)
+          })
+ 
+  }, [])
 
   return (
     <>
@@ -11,7 +25,7 @@ function Physical() {
 
     {arrayProducts.map((e, key)=>
     {
-      if(e.type == "Physical")
+      if(e.category == "2")
       {
         return(
           <Product element={e} key={key}/>

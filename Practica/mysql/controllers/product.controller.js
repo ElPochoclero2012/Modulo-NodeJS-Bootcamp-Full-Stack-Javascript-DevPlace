@@ -15,10 +15,17 @@ const getProduct = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
+    let urlImage;
+    if(req.file === undefined) {
+      urlImage=null;
+    }else {
+      const url= req.protocol + '://' + req.get('host');
+      urlImage = url + '/upload/' + req.file.filename;
+    }
     const modelData = {
       name: req.body.name,
       category: req.body.category,
-      image: req.body.image,
+      image: urlImage,
       price: req.body.price
     };
     const response = await Products.create(modelData)
