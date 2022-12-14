@@ -41,7 +41,7 @@ const ValidateUsers = (req, res, next) => {
                 'password.empty': "Enter your password",
                 'password.min': "The password must be at least 5 characters long",
                 'any.required': "Enter your password"
-            })
+            })  
     });
     validateRequest(req, res, next, schema);
 };

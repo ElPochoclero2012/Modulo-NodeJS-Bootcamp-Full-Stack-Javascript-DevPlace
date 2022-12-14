@@ -1,27 +1,34 @@
-import React from "react";
-import arrayProducts from "./data/ProductList";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
-import { Row } from "react-bootstrap";
-import { Col } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-// import "swiper/css/navigation";
-
-// import required modules
 import { Pagination } from "swiper";
-// import { Navigation } from "swiper";
 
 //Acá haría las Cards en un Carousel de todos los juegos
 
 
-
 function Products() {
+
+  const [arrayProducts, setarrayProducts] = useState([])
+
+  useEffect(() => {
+
+
+    
+    fetch('http://localhost:5050/product')
+          .then(res => res.json())
+          .then(data => data.data)
+          .then((resp) => {
+            setarrayProducts(resp)
+          })
+ 
+  }, [])
+  
 
         return (
           <> 
+
       <Swiper
         slidesPerView={6}
         spaceBetween={10}
@@ -33,61 +40,21 @@ function Products() {
         className="mySwiper"
       >
         <section className="Cards">
-
-        {arrayProducts.map((e, index)=>{
           
-
-            return (
-
-              <SwiperSlide className="cardCarousel">
-                 
+        {arrayProducts.map((e,index) => {
+          return(
+            <SwiperSlide>
               <Product element={e} index={index}/>
-               
-              </SwiperSlide>
+            </SwiperSlide>
+          )
 
-            )
-
-        })} 
+        })
+          
+        }
 
 
         </section>
       </Swiper>
-
-
-
-      {/* <Carousel>
-        
-        
-
-          {arrayProducts.map((e, index)=>{
-          
-            if(index <= 4){
-              return (
-                <Carousel.Item className="cardCarousel">
-                <Product element={e} index={index}/>
-                </Carousel.Item>
-              )
-            }
-
-          })} */}
-
-      
-
-      {/* <Carousel.Item className="cardCarousel">
-
-      {arrayProducts.map((e, index)=>{
-          
-          if(index > 4){
-            return (
-              <Product element={e} index={index}/>
-            )
-          }
-
-        })}
-
-      </Carousel.Item> */}
-      
-    {/* </Carousel>     */}
     
           </>
         );

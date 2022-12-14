@@ -9,7 +9,6 @@ function validateRequest(req, res, next, schema) {
         console.log(error)
         res.status(400).json({message:`${error.details.map(x => x.message).join(', ')}`});
     } else {
-        req.body = value;
         next();
     }
 }

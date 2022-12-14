@@ -15,7 +15,6 @@ import Checkout from './components/pages/Checkout';
 import { CartProvider } from 'react-use-cart';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Footer } from './components/Footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

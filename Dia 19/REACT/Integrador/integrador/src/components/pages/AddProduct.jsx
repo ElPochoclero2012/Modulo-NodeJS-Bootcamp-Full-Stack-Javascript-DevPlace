@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 
@@ -14,23 +13,40 @@ function AddProduct() {
     })
 
     const handleChange = (e) => {
-      setData({
-        ...data,
-        [e.target.name]: e.target.value
-      })
+
+      if(e.target.name === 'image'){
+        setData({
+          ...data,
+          [e.target.name]: e.target.files,
+        })
+
+      }else{
+          setData({
+          ...data,
+          [e.target.name]: e.target.value
+        })
+      }
+
     }
 
     const handleSubmit = (e) => {
       e.preventDefault();
+
+      const formData = new FormData();
+
+      formData.append("name", data.name);
+      formData.append("price", data.price);
+      formData.append("category", data.category);
+      formData.append("image", data.image[0]);
+
       fetch('http://localhost:5050/product',{
         method:'POST',
-        headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(data)
+        body: formData,
       }).then((res) => 
         res.json() 
       ).then(data => console.log(data))
       .catch((err) => console.log(err))
-
+      
     }
 
   return(
@@ -60,7 +76,7 @@ function AddProduct() {
 
       <Form.Group>
         <Form.Label>Add a image</Form.Label>
-        <Form.Control type="file" name="image" onChange={handleChange} placeholder="Add a image"></Form.Control> <br/>
+        <Form.Control type="file" name="image" onChange={handleChange} placeholder="Add an image" required /> <br/>
       </Form.Group>
 
 
