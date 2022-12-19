@@ -23,7 +23,6 @@ function Search() {
               )
             }
           })}
-
         </Row>
       </div>
     </section>  
