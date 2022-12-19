@@ -19,7 +19,6 @@ var Users = sequelize.define('user',{
             }
         }
     },
-    image: Sequelize.TEXT,
     password: Sequelize.STRING
 });
 

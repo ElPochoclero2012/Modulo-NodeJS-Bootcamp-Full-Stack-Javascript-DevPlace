@@ -20,7 +20,6 @@ const createUser = async (req, res) => {
     const modelData = {
       username: req.body.username,
       email: req.body.email,
-      image: req.body.image,
       password: bcrypt.hashSync(req.body.password, 10)
     };
     const response = await Users.create(modelData)
